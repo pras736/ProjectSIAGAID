@@ -1,0 +1,47 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Outer Navy Ring -->
+    <path
+        android:fillColor="#1B3A6B"
+        android:pathData="M50,2 A48,48 0 1,1 49.9,2 Z M50,10 A40,40 0 1,0 50.1,10 Z" />
+
+    <!-- Inner Orange Ring / Swoosh -->
+    <path
+        android:fillColor="#F58220"
+        android:pathData="M50,8 A42,42 0 1,1 20,80 A42,42 0 0,1 50,8 Z M50,14 A36,36 0 1,0 25,75 A36,36 0 0,0 50,14 Z" />
+
+    <!-- Red Shield -->
+    <path
+        android:fillColor="#DC2626"
+        android:pathData="M50,25 L75,32 V58 C75,73 50,85 50,85 C50,85 25,73 25,58 V32 Z" />
+
+    <!-- Shield Left Shade for 3D effect -->
+    <path
+        android:fillColor="#B71C1C"
+        android:pathData="M50,25 L25,32 V58 C25,73 50,85 50,85 Z" />
+
+    <!-- White ECG Pulse Line -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M26,67 H38 L43,58 L48,78 L53,52 L58,70 L62,67 H74 V70 H60 L57,73 L52,48 L47,74 L42,54 L39,67 H26 Z" />
+
+    <!-- Orange Arrow Swoosh -->
+    <path
+        android:fillColor="#F58220"
+        android:pathData="M23,62 Q35,42 62,33 L55,27 L76,30 L73,51 L67,44 Q42,52 23,62 Z" />
+
+    <!-- White Medical Cross Top Right -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M66,16 H76 V26 H86 V36 H76 V46 H66 V36 H56 V26 H66 Z" />
+
+    <!-- Orange Border on Medical Cross -->
+    <path
+        android:fillColor="#F58220"
+        android:pathData="M64,14 H78 V24 H88 V38 H78 V48 H64 V38 H54 V24 H64 Z M66,16 V26 H56 V36 H66 V46 H76 V26 H76 V16 Z" />
+
+</vector>

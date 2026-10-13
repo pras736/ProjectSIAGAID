@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    tools:context=".DetailActivity">
+
+    <!-- Material Toolbar SIAGA ID -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navy"
+        android:elevation="4dp"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/detail_title"
+        app:titleTextColor="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarDetail">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Card Konten Detail -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/card_surface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/stroke_outline"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Container Image Placeholder -->
+                    <ImageView
+                        android:id="@+id/imgDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:contentDescription="Gambar Panduan"
+                        android:src="@drawable/siaga_id" />
+
+                    <!-- Judul Detail Panduan -->
+                    <TextView
+                        android:id="@+id/tvDetailTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textColor="@color/navy"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="Judul Panduan Keselamatan" />
+
+                    <!-- Deskripsi Detail Panduan -->
+                    <TextView
+                        android:id="@+id/tvDetailDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:lineSpacingExtra="5dp"
+                        android:textColor="@color/text_primary"
+                        android:textSize="14sp"
+                        tools:text="Deskripsi lengkap panduan keselamatan..." />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

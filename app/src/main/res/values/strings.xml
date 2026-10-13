@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">SIAGA ID</string>
+    <string name="app_tagline">KESELAMATAN &amp; TANGGAP DARURAT</string>
+
+    <!-- Splash & Login -->
+    <string name="splash_welcome">SIAGA ID</string>
+    <string name="login_title">Selamat Datang</string>
+    <string name="login_subtitle">Masuk untuk mengakses sistem keselamatan &amp; tanggap darurat</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_login">MASUK</string>
+    <string name="error_invalid_login">Login gagal! Username dan password harus sama.</string>
+    <string name="error_empty_field">Username dan Password wajib diisi!</string>
+
+    <!-- Main Screen -->
+    <string name="main_greeting">Halo, </string>
+    <string name="btn_medical_card">+ Tampilkan Kartu Medis</string>
+    <string name="profile_progress_title">Profil Medis 70% lengkap</string>
+    <string name="profile_progress_action">Lengkapi sekarang →</string>
+    <string name="guide_cpr_title">Panduan Darurat: CPR Cepat</string>
+    <string name="guide_cpr_desc">Kompresi dada darurat • Golden period henti napas</string>
+    <string name="section_emergency_numbers">NOMOR PENTING DARURAT</string>
+    <string name="badge_free_call">● Bebas Pulsa</string>
+    <string name="tip_title">Tahukah kamu?</string>
+    <string name="tip_desc">Cek dan perbarui isi tas siaga bencana setiap 6 bulan sekali.</string>
+    <string name="btn_detail">Lihat Detail Panduan</string>
+    <string name="btn_logout">Keluar Akun</string>
+
+    <!-- Dialog Logout -->
+    <string name="dialog_logout_title">Konfirmasi Keluar</string>
+    <string name="dialog_logout_message">Apakah Anda yakin ingin keluar dari aplikasi SIAGA ID?</string>
+    <string name="dialog_yes">Ya, Keluar</string>
+    <string name="dialog_no">Batal</string>
+
+    <!-- Detail -->
+    <string name="detail_title">Detail Panduan Keselamatan</string>
+</resources>
