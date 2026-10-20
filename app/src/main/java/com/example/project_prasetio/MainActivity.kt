@@ -1,25 +1,42 @@
 package com.example.project_prasetio
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.example.project_prasetio.databinding.ActivityMainBinding
+import com.example.project_prasetio.fragment.BantuanFragment
+import com.example.project_prasetio.fragment.DonasiFragment
+import com.example.project_prasetio.fragment.HomeFragment
+import com.example.project_prasetio.fragment.KartuFragment
+import com.example.project_prasetio.fragment.PanduanFragment
 
+/**
+ * MainActivity — Activity utama yang menjadi HOST untuk Bottom Navigation.
+ *
+ * Arsitektur: Single Activity + Multiple Fragments
+ * - MainActivity hanya bertanggung jawab mengelola navigasi antar Fragment
+ * - Setiap tab Bottom Navigation meload Fragment yang sesuai
+ * - Konten masing-masing tab dikelola di dalam Fragment-nya sendiri
+ *
+ * Tab yang tersedia:
+ * 1. Beranda     → HomeFragment    (dashboard utama)
+ * 2. Panduan     → PanduanFragment (ListView + Custom Adapter)
+ * 3. Bantuan     → BantuanFragment (ListView + Simple List Item)
+ * 4. Donasi      → DonasiFragment  (halaman donasi)
+ * 5. Kartu Saya  → KartuFragment   (kartu medis digital)
+ */
 class MainActivity : AppCompatActivity() {
 
-    // ViewBinding & SharedPreferences Manager
     private lateinit var binding: ActivityMainBinding
-    private lateinit var prefManager: SharedPrefManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Inflate layout dengan ViewBinding
+        // Inflate layout menggunakan ViewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -29,77 +46,34 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Inisialisasi SharedPreferences Manager & Tampilkan Greeting User
-        prefManager = SharedPrefManager(this)
-        val savedUsername = prefManager.username
-        binding.tvUserGreeting.text = "${getString(R.string.main_greeting)}$savedUsername"
-
-        // Klik Card Panduan / Tombol Detail -> Pindah ke DetailActivity
-        val openDetailListener = {
-            val title = binding.tvCardTitle.text.toString()
-            val description = """
-                PANDUAN DARURAT: CPR & RESUSITASI JANTUNG PARU
-                
-                Langkah-Langkah Pertolongan Pertama Henti Napas / Henti Jantung:
-                
-                1. AMANKAN LOKASI & CEK RESPON
-                - Pastikan lokasi aman untuk penolong dan korban.
-                - Tepuk bahu korban dan panggil dengan suara lantang: "Pak/Bu, apakah Anda sadar?"
-                
-                2. MINTA BANTUAN DARURAT (118 / 119)
-                - Jika korban tidak merespon, segera telepon layanan medis darurat 118 / 119.
-                - Minta bantuan orang sekitar untuk mengambil AED (Defibrilator Otomatis) jika ada.
-                
-                3. CEK NAPAS & DENYUT NADI (Maksimal 10 Detik)
-                - Amati dada korban apakah mengembang/mengempis secara normal.
-                
-                4. KOMPRESI DADA DARURAT (100-120x / Menit)
-                - Posisikan tumit telapak tangan di tengah dada korban (seperdua bawah tulang dada).
-                - Kaitkan jari-jari tangan kedua di atas tangan pertama.
-                - Tekan dada sedalam 5-6 cm secara cepat dan kuat ritme 100-120 kali per menit.
-                - Lakukan terus hingga tim medis darurat tiba di lokasi.
-            """.trimIndent()
-
-            val intent = Intent(this@MainActivity, DetailActivity::class.java).apply {
-                putExtra(DetailActivity.EXTRA_TITLE, title)
-                putExtra(DetailActivity.EXTRA_DESCRIPTION, description)
-                putExtra(DetailActivity.EXTRA_IMAGE_RES, R.drawable.img_darurat)
-            }
-            startActivity(intent)
+        // Tampilkan HomeFragment sebagai tab default saat pertama kali dibuka
+        if (savedInstanceState == null) {
+            loadFragment(HomeFragment())
+            binding.bottomNavigationView.selectedItemId = R.id.nav_beranda
         }
 
-        binding.btnDetail.setOnClickListener { openDetailListener() }
-        binding.cardGuideCpr.setOnClickListener { openDetailListener() }
-
-        // Klik Tombol LogOut -> Tampilkan AlertDialog Konfirmasi
-        binding.btnLogout.setOnClickListener {
-            showLogoutAlertDialog()
+        // Set listener perubahan tab Bottom Navigation
+        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_beranda  -> { loadFragment(HomeFragment());    true }
+                R.id.nav_panduan  -> { loadFragment(PanduanFragment()); true }
+                R.id.nav_bantuan  -> { loadFragment(BantuanFragment()); true }
+                R.id.nav_donasi   -> { loadFragment(DonasiFragment());  true }
+                R.id.nav_kartu    -> { loadFragment(KartuFragment());   true }
+                else              -> false
+            }
         }
     }
 
     /**
-     * Menampilkan AlertDialog Konfirmasi Keluar/Logout
+     * Mengganti Fragment yang ditampilkan di FragmentContainerView.
+     * Menggunakan replace() agar hanya satu Fragment aktif dalam satu waktu.
+     *
+     * @param fragment Fragment yang akan ditampilkan
      */
-    private fun showLogoutAlertDialog() {
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.dialog_logout_title))
-            .setMessage(getString(R.string.dialog_logout_message))
-            .setPositiveButton(getString(R.string.dialog_yes)) { _, _ ->
-                // 1. Hapus/clear sesi login di SharedPreferences (isLogin = false)
-                prefManager.clearSession()
-
-                // 2. Pindah ke LoginActivity & bersihkan backstack
-                val intent = Intent(this@MainActivity, LoginActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                }
-                startActivity(intent)
-                finish()
-            }
-            .setNegativeButton(getString(R.string.dialog_no)) { dialog, _ ->
-                // Batal keluar, tutup dialog
-                dialog.dismiss()
-            }
-            .setCancelable(false)
-            .show()
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
     }
 }

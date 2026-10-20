@@ -35,7 +35,7 @@ class SplashActivity : AppCompatActivity() {
         // Delay 2 detik lalu cek status SharedPreferences 'isLogin'
         Handler(Looper.getMainLooper()).postDelayed({
             checkLoginStatus()
- git        }, 2000)
+        }, 2000)
     }
 
     /**

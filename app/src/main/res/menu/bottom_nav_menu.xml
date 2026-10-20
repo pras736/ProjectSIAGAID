@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_beranda"
+        android:icon="@drawable/ic_nav_home"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/nav_panduan"
+        android:icon="@drawable/ic_nav_guide"
+        android:title="Panduan" />
+
+    <item
+        android:id="@+id/nav_bantuan"
+        android:icon="@drawable/ic_nav_emergency"
+        android:title="Bantuan" />
+
+    <item
+        android:id="@+id/nav_donasi"
+        android:icon="@drawable/ic_nav_donate"
+        android:title="Donasi" />
+
+    <item
+        android:id="@+id/nav_kartu"
+        android:icon="@drawable/ic_nav_card"
+        android:title="Kartu Saya" />
+
+</menu>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical"
+    tools:context=".fragment.PanduanFragment">
+
+    <!-- Toolbar Panduan -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarPanduan"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/card_surface"
+        android:elevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Panduan Darurat"
+                android:textColor="@color/navy"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pertolongan pertama &amp; keselamatan"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <!-- Label info ListView -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/navy_light"
+        android:padding="12dp"
+        android:text="Pilih panduan untuk melihat langkah-langkah pertolongan pertama"
+        android:textColor="@color/navy"
+        android:textSize="12sp" />
+
+    <!-- ListView Panduan — menggunakan Custom Adapter -->
+    <ListView
+        android:id="@+id/listViewPanduan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/stroke_outline"
+        android:dividerHeight="1dp" />
+
+</LinearLayout>
