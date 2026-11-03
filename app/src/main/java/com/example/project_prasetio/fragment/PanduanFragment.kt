@@ -1,6 +1,5 @@
 package com.example.project_prasetio.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.project_prasetio.DetailActivity
+import com.example.project_prasetio.MainActivity
 import com.example.project_prasetio.R
 import com.example.project_prasetio.adapter.PanduanAdapter
 import com.example.project_prasetio.databinding.FragmentPanduanBinding
@@ -20,7 +19,7 @@ import com.example.project_prasetio.model.PanduanItem
  * - Header: "Panduan Tindakan" & "Akses luring 100% tanpa internet"
  * - Filter Chips: Semua, P3K Medis, Bencana Alam, Evakuasi
  * - LISTVIEW DENGAN CUSTOM ADAPTER (PanduanAdapter)
- * - Saat item diklik, membuka DetailActivity (Screen 1)
+ * - Saat item diklik, membuka DetailFragment (Screen 1)
  */
 class PanduanFragment : Fragment() {
 
@@ -55,16 +54,18 @@ class PanduanFragment : Fragment() {
         // Setup filter chips
         setupFilterChips()
 
-        // Klik Item ListView -> Buka DetailActivity (Screen 1)
+        // Klik Item ListView -> Buka DetailFragment (Screen 1)
         binding.listViewPanduan.setOnItemClickListener { _, _, position, _ ->
             val item = (adapter.getItem(position) as PanduanItem)
-            val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-                putExtra(DetailActivity.EXTRA_TITLE, item.judul)
-                putExtra(DetailActivity.EXTRA_DESCRIPTION, item.deskripsi)
-                putExtra(DetailActivity.EXTRA_CATEGORY, item.kategori)
-                putExtra(DetailActivity.EXTRA_GOLDEN_PERIOD, item.goldenPeriod)
-            }
-            startActivity(intent)
+            (activity as? MainActivity)?.navigateTo(
+                DetailFragment.newInstance(
+                    title = item.judul,
+                    subtitle = item.deskripsi,
+                    category = item.kategori,
+                    goldenPeriod = item.goldenPeriod
+                ),
+                addToBackStack = true
+            )
         }
     }
 

@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.project_prasetio.R
-import com.example.project_prasetio.RescuerActivity
+import com.example.project_prasetio.MainActivity
 import com.example.project_prasetio.SharedPrefManager
 import com.example.project_prasetio.databinding.FragmentKartuBinding
 
@@ -18,7 +17,7 @@ import com.example.project_prasetio.databinding.FragmentKartuBinding
  * - Header: Kartu Saya + Identitas Medis & Kontak Darurat + QR Code
  * - Digital Medical ID Card Navy: Gol O+ Rh+, Alergi Penisilin, Asma Bronkial
  * - Kontak Darurat Keluarga (Siti Rahmawati [Utama] & Dewi Lestari) dengan panggilan cepat
- * - Tombol Merah: + Buka Mode Penolong Darurat (Screen 6)
+ * - Tombol Merah: + Buka Mode Penolong Darurat (RescuerFragment / Screen 6)
  * - Tombol Outlined: Bagikan Kartu Medis
  */
 class KartuFragment : Fragment() {
@@ -59,10 +58,9 @@ class KartuFragment : Fragment() {
             callContact("0813-9876-5432", "Dewi Lestari")
         }
 
-        // Buka Mode Penolong Darurat (Screen 6)
+        // Buka RescuerFragment (Screen 6: Mode Penolong)
         binding.btnOpenRescuerMode.setOnClickListener {
-            val intent = Intent(requireContext(), RescuerActivity::class.java)
-            startActivity(intent)
+            (activity as? MainActivity)?.navigateTo(RescuerFragment.newInstance(), addToBackStack = true)
         }
 
         // Bagikan Kartu Medis via Intent Share

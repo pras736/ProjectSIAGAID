@@ -9,12 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.example.project_prasetio.BantuanActivity
-import com.example.project_prasetio.DetailActivity
 import com.example.project_prasetio.LoginActivity
 import com.example.project_prasetio.MainActivity
 import com.example.project_prasetio.R
-import com.example.project_prasetio.RescuerActivity
 import com.example.project_prasetio.SharedPrefManager
 import com.example.project_prasetio.databinding.FragmentHomeBinding
 
@@ -22,11 +19,11 @@ import com.example.project_prasetio.databinding.FragmentHomeBinding
  * HomeFragment — Screen 3 Grand Design (Beranda SIAGA ID):
  * - Header branding SIAGA ID + Greeting user dari SharedPreferences
  * - Tombol pengaturan (membuka Bottom Sheet Screen 4)
- * - Kartu Darurat Merah "Tampilkan Kartu Medis" (membuka Mode Penolong / Screen 6)
- * - Kartu Progres "Profil Medis 70% lengkap" (membuka Kartu Saya / Screen 5)
- * - Quick Card CPR (membuka Detail Panduan CPR / Screen 1)
+ * - Kartu Darurat Merah "Tampilkan Kartu Medis" (membuka RescuerFragment / Screen 6)
+ * - Kartu Progres "Profil Medis 70% lengkap" (membuka KartuFragment / Screen 5)
+ * - Quick Card CPR (membuka DetailFragment CPR / Screen 1)
  * - Grid 6 Nomor Penting Darurat dengan tombol dial cepat
- * - Akses ke ListView Simple List Item via badge "Bebas Pulsa"
+ * - Akses ke ListView Simple List Item via badge "Bebas Pulsa" (BantuanFragment)
  */
 class HomeFragment : Fragment() {
 
@@ -57,10 +54,9 @@ class HomeFragment : Fragment() {
             sheet.show(parentFragmentManager, SettingsBottomSheetDialogFragment.TAG)
         }
 
-        // 2. Tombol Merah Darurat: "Tampilkan Kartu Medis" -> Buka Mode Penolong (Screen 6)
+        // 2. Tombol Merah Darurat: "Tampilkan Kartu Medis" -> Buka RescuerFragment (Screen 6)
         binding.btnEmergencyCard.setOnClickListener {
-            val intent = Intent(requireContext(), RescuerActivity::class.java)
-            startActivity(intent)
+            (activity as? MainActivity)?.navigateTo(RescuerFragment.newInstance(), addToBackStack = true)
         }
 
         // 3. Progres Medis -> Berpindah ke Tab Kartu Saya (Screen 5)
@@ -70,19 +66,22 @@ class HomeFragment : Fragment() {
         binding.cardMedicalProgress.setOnClickListener { openKartuTab() }
         binding.btnCompleteProfile.setOnClickListener { openKartuTab() }
 
-        // 4. Panduan Darurat CPR Cepat -> Buka DetailActivity (Screen 1)
+        // 4. Panduan Darurat CPR Cepat -> Buka DetailFragment (Screen 1)
         binding.cardGuideCpr.setOnClickListener {
-            val intent = Intent(requireContext(), DetailActivity::class.java).apply {
-                putExtra(DetailActivity.EXTRA_GUIDE_TYPE, "CPR")
-                putExtra(DetailActivity.EXTRA_TITLE, "Resusitasi Jantung Paru (CPR / RJP)")
-            }
-            startActivity(intent)
+            (activity as? MainActivity)?.navigateTo(
+                DetailFragment.newInstance(
+                    title = "Resusitasi Jantung Paru (CPR / RJP)",
+                    subtitle = "Kompresi dada darurat henti napas & henti jantung mendadak.",
+                    category = "Kritis",
+                    goldenPeriod = "Golden Period: 4 Menit"
+                ),
+                addToBackStack = true
+            )
         }
 
-        // 5. Section Header "Bebas Pulsa" -> Buka BantuanActivity (ListView Simple List Item)
+        // 5. Section Header "Bebas Pulsa" -> Buka BantuanFragment (ListView Simple List Item)
         binding.btnOpenSimpleList.setOnClickListener {
-            val intent = Intent(requireContext(), BantuanActivity::class.java)
-            startActivity(intent)
+            (activity as? MainActivity)?.navigateTo(BantuanFragment.newInstance(), addToBackStack = true)
         }
 
         // 6. Action Panggilan Cepat (Grid 2 Kolom x 3 Baris)
@@ -114,7 +113,7 @@ class HomeFragment : Fragment() {
     }
 
     /**
-     * Menampilkan AlertDialog konfirmasi logout (juga dapat dipanggil langsung)
+     * Menampilkan AlertDialog konfirmasi logout
      */
     fun showLogoutDialog() {
         AlertDialog.Builder(requireContext())
