@@ -31,15 +31,25 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Logo Emblem SIAGA ID -->
-            <ImageView
-                android:id="@+id/imgLoginLogo"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
+            <!-- Logo SIAGA ID (siaga_id.jpg) -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="76dp"
+                android:layout_height="76dp"
                 android:layout_gravity="center_horizontal"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo_emblem" />
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="38dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/stroke_outline"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/imgLoginLogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/siaga_id" />
+            </com.google.android.material.card.MaterialCardView>
 
             <!-- Brand Header: SIAGA ID -->
             <LinearLayout

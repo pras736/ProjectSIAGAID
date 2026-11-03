@@ -19,14 +19,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Logo Emblem SIAGA ID -->
-        <ImageView
-            android:id="@+id/imgSplashLogo"
+        <!-- Logo SIAGA ID (siaga_id.jpg) -->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitCenter"
-            android:src="@drawable/logo_emblem" />
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="55dp"
+            app:cardElevation="6dp"
+            app:strokeWidth="0dp">
+
+            <ImageView
+                android:id="@+id/imgSplashLogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/siaga_id" />
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Judul Aplikasi -->
         <LinearLayout
