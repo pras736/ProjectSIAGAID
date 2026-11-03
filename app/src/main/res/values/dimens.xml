@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Corner Radii -->
+    <dimen name="corner_radius_card">16dp</dimen>
+    <dimen name="corner_radius_button">12dp</dimen>
+    <dimen name="corner_radius_chip">20dp</dimen>
+    <dimen name="corner_radius_badge">8dp</dimen>
+    <dimen name="corner_radius_full">999dp</dimen>
+
+    <!-- Spacing & Paddings -->
+    <dimen name="space_xxs">2dp</dimen>
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_s">8dp</dimen>
+    <dimen name="space_m">12dp</dimen>
+    <dimen name="space_l">16dp</dimen>
+    <dimen name="space_xl">20dp</dimen>
+    <dimen name="space_xxl">24dp</dimen>
+    <dimen name="space_3xl">32dp</dimen>
+    <dimen name="space_4xl">48dp</dimen>
+
+    <!-- Elevations & Strokes -->
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_flat">0dp</dimen>
+    <dimen name="stroke_width_thin">1dp</dimen>
+    <dimen name="stroke_width_regular">1.5dp</dimen>
+    <dimen name="stroke_width_thick">2dp</dimen>
+
+    <!-- Icon Sizes -->
+    <dimen name="icon_size_s">16dp</dimen>
+    <dimen name="icon_size_m">20dp</dimen>
+    <dimen name="icon_size_l">24dp</dimen>
+    <dimen name="icon_size_xl">32dp</dimen>
+    <dimen name="icon_size_2xl">48dp</dimen>
+    <dimen name="icon_size_logo">64dp</dimen>
+    <dimen name="icon_size_logo_big">96dp</dimen>
+
+    <!-- Typography Text Sizes -->
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_body_small">13sp</dimen>
+    <dimen name="text_body">15sp</dimen>
+    <dimen name="text_body_large">16sp</dimen>
+    <dimen name="text_title_small">18sp</dimen>
+    <dimen name="text_title_medium">20sp</dimen>
+    <dimen name="text_title_large">24sp</dimen>
+    <dimen name="text_headline">28sp</dimen>
+    <dimen name="text_display">34sp</dimen>
+</resources>

@@ -1,0 +1,46 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Outer Navy Ring -->
+    <path
+        android:strokeColor="#1B3A6B"
+        android:strokeWidth="6"
+        android:strokeLineCap="round"
+        android:pathData="M 60,10 A 50,50 0 1,1 59.9,10 Z" />
+
+    <!-- Inner Orange Swoosh Ring -->
+    <path
+        android:strokeColor="#F58220"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:pathData="M 26,38 A 41,41 0 1,1 94,62" />
+
+    <!-- Red Medical Shield Center -->
+    <path
+        android:fillColor="#DC2626"
+        android:pathData="M 60,36 C 72,36 82,38 84,40 C 84,62 76,78 60,94 C 44,78 36,62 36,40 C 38,38 48,36 60,36 Z" />
+
+    <!-- White Heartbeat / Pulse ECG Line -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M 42,62 L 51,62 L 54,54 L 58,72 L 62,48 L 66,66 L 69,62 L 78,62" />
+
+    <!-- Orange Medical Plus Sign at Top Crest -->
+    <path
+        android:strokeColor="#F58220"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:pathData="M 60,18 L 60,30 M 54,24 L 66,24" />
+
+    <!-- Small Orange Upward Arrow Indicator -->
+    <path
+        android:fillColor="#F58220"
+        android:pathData="M 60,14 L 63,18 L 57,18 Z" />
+
+</vector>
