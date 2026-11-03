@@ -13,10 +13,11 @@
         android:id="@+id/cardLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:cardBackgroundColor="@color/card_surface"
         app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
+        app:cardElevation="3dp"
         app:strokeColor="@color/stroke_outline"
         app:strokeWidth="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,20 +31,15 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Container Logo Brand SIAGA ID -->
-            <FrameLayout
-                android:layout_width="84dp"
-                android:layout_height="84dp"
-                android:layout_gravity="center_horizontal">
-
-                <ImageView
-                    android:id="@+id/imgLoginLogoContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/app_name"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/siaga_id" />
-            </FrameLayout>
+            <!-- Logo Emblem SIAGA ID -->
+            <ImageView
+                android:id="@+id/imgLoginLogo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logo_emblem" />
 
             <!-- Brand Header: SIAGA ID -->
             <LinearLayout
@@ -56,6 +52,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
                     android:text="SIAGA "
                     android:textColor="@color/navy"
                     android:textSize="22sp"
@@ -64,6 +61,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
                     android:text="ID"
                     android:textColor="@color/red"
                     android:textSize="22sp"
@@ -80,7 +78,7 @@
                 android:gravity="center"
                 android:text="@string/login_subtitle"
                 android:textColor="@color/text_secondary"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <!-- Input Username -->
             <com.google.android.material.textfield.TextInputLayout
@@ -90,6 +88,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:hint="@string/hint_username"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeColor="@color/navy"
                 app:hintTextColor="@color/navy">
 
@@ -109,6 +111,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
                 android:hint="@string/hint_password"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
                 app:boxStrokeColor="@color/navy"
                 app:endIconMode="password_toggle"
                 app:hintTextColor="@color/navy">
@@ -121,17 +127,17 @@
                     android:textColor="@color/text_primary" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Tombol Login (Aksen Orange / Navy) -->
+            <!-- Tombol Login (Aksen Orange) -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnlogin"
+                style="@style/Widget.SiagaID.Button.Primary"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
+                android:layout_height="50dp"
                 android:text="@string/btn_login"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                app:backgroundTint="@color/orange"
-                app:cornerRadius="8dp" />
+                app:cornerRadius="10dp" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

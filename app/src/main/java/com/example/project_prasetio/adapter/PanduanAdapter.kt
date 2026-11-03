@@ -1,70 +1,84 @@
 package com.example.project_prasetio.adapter
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
+import android.widget.BaseAdapter
+import androidx.core.content.ContextCompat
 import com.example.project_prasetio.R
+import com.example.project_prasetio.databinding.ItemPanduanBinding
 import com.example.project_prasetio.model.PanduanItem
 
 /**
- * Custom ArrayAdapter untuk menampilkan daftar Panduan Darurat di ListView.
- *
- * Adapter ini menggunakan View Holder Pattern untuk performa yang optimal,
- * serta me-render item_panduan.xml sebagai tampilan tiap baris list.
- *
- * @param context   Context dari Fragment/Activity pemanggil
- * @param dataList  List data PanduanItem yang akan ditampilkan
+ * PanduanAdapter — CUSTOM ADAPTER untuk ListView Panduan Tindakan (Screen 2).
+ * Menerapkan ViewHolder pattern untuk performa optimal.
  */
 class PanduanAdapter(
-    context: Context,
-    private val dataList: List<PanduanItem>
-) : ArrayAdapter<PanduanItem>(context, 0, dataList) {
+    private val context: Context,
+    private var dataList: List<PanduanItem>
+) : BaseAdapter() {
 
-    /**
-     * View Holder Pattern — menyimpan referensi view agar tidak perlu
-     * findViewById() berulang kali saat scroll (meningkatkan performa ListView).
-     */
-    private class ViewHolder(view: View) {
-        val tvIconEmoji: TextView = view.findViewById(R.id.tvIconEmoji)
-        val tvJudulPanduan: TextView = view.findViewById(R.id.tvJudulPanduan)
-        val tvDeskripsiPanduan: TextView = view.findViewById(R.id.tvDeskripsiPanduan)
-        val tvBadgeKategori: TextView = view.findViewById(R.id.tvBadgeKategori)
+    override fun getCount(): Int = dataList.size
+
+    override fun getItem(position: Int): Any = dataList[position]
+
+    override fun getItemId(position: Int): Long = position.toLong()
+
+    fun updateData(newList: List<PanduanItem>) {
+        this.dataList = newList
+        notifyDataSetChanged()
     }
 
-    /**
-     * getView() dipanggil oleh ListView setiap kali satu baris perlu di-render.
-     *
-     * Logika inflate hanya berjalan jika convertView null (baris baru),
-     * sedangkan baris yang di-recycle akan langsung menggunakan tag ViewHolder.
-     */
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val viewHolder: ViewHolder
-        val rowView: View
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val binding: ItemPanduanBinding
+        val view: View
 
         if (convertView == null) {
-            // Inflate layout custom item panduan
-            rowView = LayoutInflater.from(context).inflate(R.layout.item_panduan, parent, false)
-            // Buat dan simpan ViewHolder ke tag view
-            viewHolder = ViewHolder(rowView)
-            rowView.tag = viewHolder
+            binding = ItemPanduanBinding.inflate(LayoutInflater.from(context), parent, false)
+            view = binding.root
+            view.tag = binding
         } else {
-            // Ambil kembali ViewHolder yang sudah ada (view di-recycle)
-            rowView = convertView
-            viewHolder = convertView.tag as ViewHolder
+            view = convertView
+            binding = view.tag as ItemPanduanBinding
         }
 
-        // Ambil data sesuai posisi
         val item = dataList[position]
 
-        // Bind data ke tiap komponen View
-        viewHolder.tvIconEmoji.text = item.emoji
-        viewHolder.tvJudulPanduan.text = item.judul
-        viewHolder.tvDeskripsiPanduan.text = item.deskripsi
-        viewHolder.tvBadgeKategori.text = item.kategori
+        binding.tvJudulPanduan.text = item.judul
+        binding.tvDeskripsiPanduan.text = item.deskripsi
+        binding.tvBadgeKategori.text = item.kategori
 
-        return rowView
+        when (item.kategori) {
+            "Kritis" -> {
+                binding.viewIndicatorStrip.setBackgroundResource(R.drawable.bg_badge_red)
+                binding.tvBadgeKategori.setBackgroundResource(R.drawable.bg_pill_kritis)
+                binding.tvBadgeKategori.setTextColor(ContextCompat.getColor(context, R.color.red))
+            }
+            "P3K" -> {
+                binding.viewIndicatorStrip.setBackgroundResource(R.drawable.bg_badge_orange)
+                binding.tvBadgeKategori.setBackgroundResource(R.drawable.bg_pill_p3k)
+                binding.tvBadgeKategori.setTextColor(ContextCompat.getColor(context, R.color.orange_dark))
+            }
+            "Bencana" -> {
+                binding.viewIndicatorStrip.setBackgroundResource(R.drawable.bg_badge_orange)
+                binding.tvBadgeKategori.setBackgroundResource(R.drawable.bg_pill_bencana)
+                binding.tvBadgeKategori.setTextColor(ContextCompat.getColor(context, R.color.navy))
+            }
+            "Evakuasi" -> {
+                binding.viewIndicatorStrip.setBackgroundResource(R.drawable.bg_badge_orange)
+                binding.tvBadgeKategori.setBackgroundResource(R.drawable.bg_pill_bencana)
+                binding.tvBadgeKategori.setTextColor(ContextCompat.getColor(context, R.color.navy))
+            }
+            else -> {
+                binding.viewIndicatorStrip.setBackgroundResource(R.drawable.bg_badge_orange)
+                binding.tvBadgeKategori.setBackgroundResource(R.drawable.bg_pill_p3k)
+                binding.tvBadgeKategori.setTextColor(ContextCompat.getColor(context, R.color.orange_dark))
+            }
+        }
+
+        return view
     }
 }

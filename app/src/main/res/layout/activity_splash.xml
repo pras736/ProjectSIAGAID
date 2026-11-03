@@ -19,19 +19,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Container Logo SIAGA ID -->
-        <FrameLayout
-            android:layout_width="120dp"
-            android:layout_height="120dp">
-
-            <ImageView
-                android:id="@+id/imgSplashLogo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/siaga_id" />
-        </FrameLayout>
+        <!-- Logo Emblem SIAGA ID -->
+        <ImageView
+            android:id="@+id/imgSplashLogo"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo_emblem" />
 
         <!-- Judul Aplikasi -->
         <LinearLayout
@@ -43,6 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
                 android:text="SIAGA "
                 android:textColor="@color/white"
                 android:textSize="28sp"
@@ -51,6 +47,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
                 android:text="ID"
                 android:textColor="@color/red"
                 android:textSize="28sp"
@@ -62,18 +59,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:letterSpacing="0.05"
+            android:letterSpacing="0.08"
             android:text="@string/app_tagline"
             android:textColor="@color/track_pills"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:textStyle="bold" />
 
     </LinearLayout>
 
     <!-- Progress Indicator -->
     <ProgressBar
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginBottom="40dp"
         android:indeterminateTint="@color/orange"
         app:layout_constraintBottom_toBottomOf="parent"

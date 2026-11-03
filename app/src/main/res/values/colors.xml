@@ -2,34 +2,61 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
 
     <!-- SIAGA ID Design System Tokens -->
     <!-- Navy: Primer (Otoritas & Kepercayaan) -->
     <color name="navy">#1B3A6B</color>
     <color name="navy_dark">#12284B</color>
     <color name="navy_light">#EEF4FD</color>
+    <color name="brand_navy">#1B3A6B</color>
+    <color name="brand_navy_dark">#12284B</color>
+    <color name="brand_navy_light">#EEF4FD</color>
 
     <!-- Orange: Aksen (Kesiapan, Progres & Aksi) -->
     <color name="orange">#F58220</color>
     <color name="orange_dark">#D66A10</color>
     <color name="orange_light">#FFF4EB</color>
+    <color name="brand_orange">#F58220</color>
+    <color name="brand_orange_dark">#D66A10</color>
+    <color name="brand_orange_light">#FFF4EB</color>
 
     <!-- Red: Khusus Situasi Gawat Darurat -->
     <color name="red">#DC2626</color>
     <color name="red_dark">#991B1B</color>
     <color name="red_light">#FEF2F2</color>
+    <color name="brand_red">#DC2626</color>
+    <color name="brand_red_dark">#991B1B</color>
+    <color name="brand_red_light">#FEF2F2</color>
 
     <!-- Green: Panggilan Darurat & Sukses / Siap -->
     <color name="green">#16A34A</color>
     <color name="green_dark">#15803D</color>
     <color name="green_light">#F0FDF4</color>
+    <color name="call_green">#16A34A</color>
+    <color name="call_green_dark">#15803D</color>
+    <color name="call_green_light">#F0FDF4</color>
 
     <!-- Netral & Permukaan (Light Theme Baseline) -->
     <color name="text_primary">#0F172A</color>
     <color name="text_secondary">#475569</color>
     <color name="text_muted">#94A3B8</color>
+    <color name="text_primary_light">#0F172A</color>
+    <color name="text_secondary_light">#475569</color>
+    <color name="text_muted_light">#94A3B8</color>
     <color name="stroke_outline">#E2E8F0</color>
+    <color name="outline_light">#E2E8F0</color>
     <color name="track_pills">#F1F5F9</color>
+    <color name="surface_variant_light">#F1F5F9</color>
     <color name="app_bg">#F8FAFC</color>
+    <color name="bg_light">#F8FAFC</color>
     <color name="card_surface">#FFFFFF</color>
+    <color name="surface_light">#FFFFFF</color>
+
+    <!-- Ripples & Misc -->
+    <color name="ripple_light">#1F1B3A6B</color>
+    <color name="card_stroke_light">#E2E8F0</color>
+    <color name="amber_warning">#B45309</color>
+    <color name="amber_bg">#FFFBEB</color>
+    <color name="amber_border">#FDE68A</color>
 </resources>

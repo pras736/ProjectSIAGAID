@@ -7,8 +7,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.project_prasetio.databinding.ActivityMainBinding
-import com.example.project_prasetio.fragment.BantuanFragment
-import com.example.project_prasetio.fragment.DonasiFragment
 import com.example.project_prasetio.fragment.HomeFragment
 import com.example.project_prasetio.fragment.KartuFragment
 import com.example.project_prasetio.fragment.PanduanFragment
@@ -16,17 +14,11 @@ import com.example.project_prasetio.fragment.PanduanFragment
 /**
  * MainActivity — Activity utama yang menjadi HOST untuk Bottom Navigation.
  *
- * Arsitektur: Single Activity + Multiple Fragments
- * - MainActivity hanya bertanggung jawab mengelola navigasi antar Fragment
- * - Setiap tab Bottom Navigation meload Fragment yang sesuai
- * - Konten masing-masing tab dikelola di dalam Fragment-nya sendiri
- *
- * Tab yang tersedia:
- * 1. Beranda     → HomeFragment    (dashboard utama)
- * 2. Panduan     → PanduanFragment (ListView + Custom Adapter)
- * 3. Bantuan     → BantuanFragment (ListView + Simple List Item)
- * 4. Donasi      → DonasiFragment  (halaman donasi)
- * 5. Kartu Saya  → KartuFragment   (kartu medis digital)
+ * Mengikuti Grand Design SIAGA ID:
+ * - 3 Tab Utama:
+ *   1. Beranda     → HomeFragment    (Dashboard keselamatan & ringkasan medis)
+ *   2. Kartu Saya  → KartuFragment   (Kartu identitas medis digital & kontak darurat)
+ *   3. Panduan     → PanduanFragment (ListView dengan Custom Adapter)
  */
 class MainActivity : AppCompatActivity() {
 
@@ -36,13 +28,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        // Inflate layout menggunakan ViewBinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
@@ -56,18 +47,22 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_beranda  -> { loadFragment(HomeFragment());    true }
-                R.id.nav_panduan  -> { loadFragment(PanduanFragment()); true }
-                R.id.nav_bantuan  -> { loadFragment(BantuanFragment()); true }
-                R.id.nav_donasi   -> { loadFragment(DonasiFragment());  true }
                 R.id.nav_kartu    -> { loadFragment(KartuFragment());   true }
+                R.id.nav_panduan  -> { loadFragment(PanduanFragment()); true }
                 else              -> false
             }
         }
     }
 
     /**
+     * Membantu child fragment berpindah tab secara programatik
+     */
+    fun selectTab(itemId: Int) {
+        binding.bottomNavigationView.selectedItemId = itemId
+    }
+
+    /**
      * Mengganti Fragment yang ditampilkan di FragmentContainerView.
-     * Menggunakan replace() agar hanya satu Fragment aktif dalam satu waktu.
      *
      * @param fragment Fragment yang akan ditampilkan
      */

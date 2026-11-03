@@ -1,23 +1,18 @@
 package com.example.project_prasetio.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.SimpleAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.project_prasetio.databinding.FragmentBantuanBinding
 
 /**
- * BantuanFragment — Tab ketiga Bottom Navigation.
- *
- * Menampilkan daftar kontak darurat Indonesia menggunakan:
- * - ListView dengan SIMPLE LIST ITEM (android.R.layout.simple_list_item_2)
- * - ArrayAdapter bawaan Android dengan dua baris teks (nama & nomor)
- *
- * Simple list item digunakan karena tampilan yang diperlukan cukup sederhana:
- * hanya nama layanan dan nomor telepon darurat.
+ * BantuanFragment — ListView dengan Simple List Item (android.R.layout.simple_list_item_2)
  */
 class BantuanFragment : Fragment() {
 
@@ -36,46 +31,35 @@ class BantuanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Data kontak darurat — format: "Nama Layanan\nNomor Telepon"
-        // Menggunakan simple_list_item_2 yang secara bawaan menampilkan 2 baris teks
-        val dataKontakDarurat = arrayOf(
-            "🚨 Darurat Umum\n112 — Bebas Pulsa 24 Jam",
-            "🚑 Ambulans\n118 / 119 — Layanan Medis Darurat",
-            "🔥 Pemadam Kebakaran\n113 — Respons Darurat Kebakaran",
-            "👮 Polisi\n110 — Pengaduan & Keamanan",
-            "🌊 BASARNAS (SAR)\n115 — Pencarian & Penyelamatan",
-            "💧 PLN (Listrik Darurat)\n123 — Gangguan Listrik",
-            "☎️ Posko Bencana BNPB\n117 — Badan Nasional Penanggulangan Bencana",
-            "🏥 RS Rujukan COVID / Darurat\n119 Ext 9 — Hotline Kesehatan Nasional",
-            "👶 Hotline Anak (KPAI)\n119 Ext 8 — Perlindungan Anak",
-            "🆘 Crisis Center Kemkes\n500-454 — Layanan Kesehatan Jiwa"
+        val kontakList = listOf(
+            mapOf("name" to "🚨 Darurat Umum (112)", "desc" to "Layanan Darurat Terpadu Nasional • Bebas Pulsa 24 Jam", "number" to "112"),
+            mapOf("name" to "🚑 Ambulans Gawat Darurat (118 / 119)", "desc" to "Kemenkes RI & PMI • Pertolongan Medis Cepat", "number" to "119"),
+            mapOf("name" to "🔥 Pemadam Kebakaran (113)", "desc" to "Penanganan Kebakaran & Evakuasi Bahaya", "number" to "113"),
+            mapOf("name" to "👮 Kepolisian Republik Indonesia (110)", "desc" to "Keamanan, Ketertiban & Laporan Darurat", "number" to "110"),
+            mapOf("name" to "🌊 BASARNAS SAR (115)", "desc" to "Pencarian & Pertolongan Bencana Alam / Air", "number" to "115"),
+            mapOf("name" to "🏛️ Posko Siaga Bencana BNPB (117)", "desc" to "Badan Nasional Penanggulangan Bencana", "number" to "117"),
+            mapOf("name" to "⚡ PLN Gangguan Listrik (123)", "desc" to "Bahaya Konsleting & Kabel Putus Darurat", "number" to "123")
         )
 
-        /*
-         * SIMPLE LIST ITEM:
-         * Menggunakan ArrayAdapter dengan layout bawaan Android
-         * android.R.layout.simple_list_item_1 — satu baris teks per item
-         *
-         * Ini adalah cara paling sederhana untuk menampilkan ListView
-         * tanpa perlu membuat layout custom atau adapter sendiri.
-         */
-        val adapter = ArrayAdapter(
+        val adapter = SimpleAdapter(
             requireContext(),
-            android.R.layout.simple_list_item_1,
-            dataKontakDarurat
+            kontakList,
+            android.R.layout.simple_list_item_2,
+            arrayOf("name", "desc"),
+            intArrayOf(android.R.id.text1, android.R.id.text2)
         )
 
-        // Pasang adapter ke ListView
         binding.listViewBantuan.adapter = adapter
 
-        // Set listener klik item — tampilkan nama layanan yang diklik
         binding.listViewBantuan.setOnItemClickListener { _, _, position, _ ->
-            val namaLayanan = dataKontakDarurat[position].split("\n").first()
-            Toast.makeText(
-                requireContext(),
-                "Menghubungi: $namaLayanan",
-                Toast.LENGTH_SHORT
-            ).show()
+            val kontak = kontakList[position]
+            val nomor = kontak["number"] ?: "112"
+            Toast.makeText(requireContext(), "Menghubungi: ${kontak["name"]}", Toast.LENGTH_SHORT).show()
+
+            val dialIntent = Intent(Intent.ACTION_DIAL).apply {
+                data = Uri.parse("tel:$nomor")
+            }
+            startActivity(dialIntent)
         }
     }
 

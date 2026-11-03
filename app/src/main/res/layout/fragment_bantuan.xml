@@ -12,37 +12,13 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarBantuan"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:background="@color/card_surface"
-        android:elevation="2dp">
+        android:elevation="2dp"
+        app:title="Nomor Kontak Darurat (Simple List)"
+        app:titleTextColor="@color/navy" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingStart="4dp"
-            android:paddingEnd="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bantuan Darurat"
-                android:textColor="@color/navy"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nomor kontak layanan darurat Indonesia"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
-    <!-- Badge bebas pulsa -->
+    <!-- Badge info bebas pulsa -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

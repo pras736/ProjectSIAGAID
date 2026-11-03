@@ -16,14 +16,16 @@
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Navigation Bar (3 Tabs: Beranda, Kartu Saya, Panduan) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/card_surface"
-        android:elevation="8dp"
+        app:elevation="8dp"
+        app:itemIconSize="22dp"
         app:itemIconTint="@color/bottom_nav_color"
+        app:itemRippleColor="@color/ripple_light"
         app:itemTextColor="@color/bottom_nav_color"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"

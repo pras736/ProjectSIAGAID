@@ -1,100 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="12dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginStart="14dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="14dp"
     android:layout_marginBottom="4dp"
     app:cardBackgroundColor="@color/card_surface"
     app:cardCornerRadius="12dp"
-    app:cardElevation="2dp">
+    app:cardElevation="1dp"
+    app:strokeColor="@color/stroke_outline"
+    app:strokeWidth="1dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="14dp">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-        <!-- Icon Kategori Panduan -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardIconPanduan"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
-            android:layout_centerVertical="true"
-            app:cardBackgroundColor="@color/red_light"
-            app:cardCornerRadius="10dp">
+        <!-- Left Colored Vertical Indicator Strip -->
+        <View
+            android:id="@+id/viewIndicatorStrip"
+            android:layout_width="4dp"
+            android:layout_height="36dp"
+            android:background="@drawable/bg_badge_red" />
 
-            <TextView
-                android:id="@+id/tvIconEmoji"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="🚑"
-                android:textSize="22sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Konten Teks -->
+        <!-- Title, Badge & Subtitle -->
         <LinearLayout
-            android:id="@+id/llTextContent"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="32dp"
-            android:layout_toEndOf="@id/cardIconPanduan"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- Judul Panduan -->
-            <TextView
-                android:id="@+id/tvJudulPanduan"
+            <!-- Title & Category Badge Row -->
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Judul Panduan"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <!-- Deskripsi Singkat -->
-            <TextView
-                android:id="@+id/tvDeskripsiPanduan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Deskripsi singkat panduan darurat"
-                android:textColor="@color/text_secondary"
-                android:textSize="12sp" />
-
-            <!-- Badge Kategori -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                app:cardBackgroundColor="@color/navy_light"
-                app:cardCornerRadius="4dp">
+                <TextView
+                    android:id="@+id/tvJudulPanduan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="RJP / CPR (Henti Jantung)" />
 
                 <TextView
                     android:id="@+id/tvBadgeKategori"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="8dp"
-                    android:paddingVertical="2dp"
-                    android:text="Kategori"
-                    android:textColor="@color/navy"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-            </com.google.android.material.card.MaterialCardView>
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/bg_pill_kritis"
+                    android:paddingStart="6dp"
+                    android:paddingTop="1dp"
+                    android:paddingEnd="6dp"
+                    android:paddingBottom="1dp"
+                    android:textColor="@color/red"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    tools:text="Kritis" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDeskripsiPanduan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="10sp"
+                tools:text="Kompresi dada 100-120x/mnt • Golden period 4 mnt" />
         </LinearLayout>
 
-        <!-- Arrow Icon -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:text="❯"
-            android:textColor="@color/text_muted"
-            android:textSize="14sp" />
+        <!-- Chevron Right -->
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="Buka"
+            android:src="@drawable/ic_chevron_right"
+            app:tint="@color/text_muted" />
+    </LinearLayout>
 
-    </RelativeLayout>
-
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

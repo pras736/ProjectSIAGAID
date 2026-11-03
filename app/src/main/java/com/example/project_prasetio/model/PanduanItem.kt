@@ -1,18 +1,24 @@
 package com.example.project_prasetio.model
 
 /**
- * Data class untuk merepresentasikan satu item Panduan Darurat.
+ * Data class untuk merepresentasikan satu item Panduan Darurat sesuai Grand Design.
  *
- * @param emoji       Ikon emoji sebagai representasi visual kategori
- * @param judul       Judul panduan darurat
- * @param deskripsi   Deskripsi singkat panduan
- * @param kategori    Badge kategori (mis: "Jantung", "Luka", "Bencana")
- * @param isiLengkap  Konten detail panduan yang akan ditampilkan di DetailActivity
+ * @param judul       Judul panduan darurat (misal: "RJP / CPR (Henti Jantung)")
+ * @param deskripsi   Deskripsi singkat panduan (misal: "Kompresi dada 100-120x/mnt • Golden period 4 mnt")
+ * @param kategori    Badge label (misal: "Kritis", "P3K", "Bencana", "Evakuasi")
+ * @param kategoriGroup Kategori filter chip ("P3K Medis", "Bencana Alam", "Evakuasi")
+ * @param goldenPeriod Label batas waktu darurat (misal: "Golden Period: 4 Menit")
+ * @param isiLengkap  Konten penjelasan umum
+ * @param langkah     Daftar langkah pertolongan cepat berurutan
+ * @param pantangan   Daftar hal yang jangan dilakukan
  */
 data class PanduanItem(
-    val emoji: String,
     val judul: String,
     val deskripsi: String,
     val kategori: String,
-    val isiLengkap: String
+    val kategoriGroup: String,
+    val goldenPeriod: String = "Golden Period: 4 Menit",
+    val isiLengkap: String = "",
+    val langkah: List<Pair<String, String>> = emptyList(),
+    val pantangan: List<String> = emptyList()
 )
