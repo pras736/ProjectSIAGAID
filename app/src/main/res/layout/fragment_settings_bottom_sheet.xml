@@ -209,6 +209,21 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- Panduan Onboarding / Tutorial Screen (Pertemuan 9) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOpenTutorial"
+        style="@style/Widget.SiagaID.Button.Outlined"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginTop="14dp"
+        android:text="Lihat Ulang Tutorial Aplikasi"
+        android:textSize="13sp"
+        app:cornerRadius="10dp"
+        app:icon="@drawable/ic_info"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconSize="18dp" />
+
     <!-- Danger Zone: Hapus Semua Data / Logout -->
     <LinearLayout
         android:layout_width="match_parent"

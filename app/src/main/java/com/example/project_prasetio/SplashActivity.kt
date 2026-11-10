@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.project_prasetio.databinding.ActivitySplashBinding
+import com.example.project_prasetio.tutorial.TutorialActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -32,19 +33,23 @@ class SplashActivity : AppCompatActivity() {
 
         prefManager = SharedPrefManager(this)
 
-        // Delay 2 detik lalu cek status SharedPreferences 'isLogin'
+        // Delay 2 detik lalu navigasi ke Tutorial / Login / Main
         Handler(Looper.getMainLooper()).postDelayed({
             checkLoginStatus()
         }, 2000)
     }
 
     /**
-     * Pengecekan Sesi Login:
-     * - Jika isLogin == true  -> Langsung masuk ke MainActivity
-     * - Jika isLogin == false -> Pindah ke LoginActivity
+     * Alur Navigasi Setelah Splash Screen:
+     * 1. Jika tutorial belum pernah dilihat -> Masuk ke TutorialActivity (3 Slide ViewPager2 + DotsIndicator)
+     * 2. Jika tutorial sudah dilihat & isLogin == true -> Langsung masuk ke MainActivity
+     * 3. Jika tutorial sudah dilihat & isLogin == false -> Pindah ke LoginActivity
      */
     private fun checkLoginStatus() {
-        if (prefManager.isLogin) {
+        if (!prefManager.isTutorialSeen) {
+            val intent = Intent(this@SplashActivity, TutorialActivity::class.java)
+            startActivity(intent)
+        } else if (prefManager.isLogin) {
             val intent = Intent(this@SplashActivity, MainActivity::class.java)
             startActivity(intent)
         } else {

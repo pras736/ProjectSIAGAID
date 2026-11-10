@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="140dp"
+    android:viewportWidth="400"
+    android:viewportHeight="140">
+
+    <!-- Latar Atas Navy Primer SIAGA ID -->
+    <path
+        android:fillColor="#12284B"
+        android:pathData="M0,0 L400,0 L400,90 C320,130 240,60 160,110 C90,150 30,115 0,125 Z" />
+
+    <!-- Layer Gelombang AI 1 (Navy Medium dengan kurva halus) -->
+    <path
+        android:fillColor="#1B3A6B"
+        android:pathData="M0,0 L400,0 L400,75 C310,120 220,50 130,95 C60,125 20,95 0,105 Z" />
+
+    <!-- Layer Gelombang AI 2 (Aksen Biru Terang) -->
+    <path
+        android:fillColor="#332563EB"
+        android:pathData="M0,0 L400,0 L400,60 C290,105 200,40 100,80 C40,105 10,80 0,90 Z" />
+
+    <!-- Garis Aksen Gelombang Oranye SIAGA ID -->
+    <path
+        android:fillColor="#F58220"
+        android:pathData="M0,105 C20,95 60,125 130,95 C220,50 310,120 400,75 L400,78 C310,123 220,53 130,98 C60,128 20,98 0,108 Z" />
+</vector>

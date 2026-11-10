@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 /**
- * Class Pengelola SharedPreferences untuk menyimpan sesi Login pengguna
+ * Class Pengelola SharedPreferences untuk menyimpan sesi Login pengguna dan status Tutorial
  */
 class SharedPrefManager(context: Context) {
 
@@ -14,7 +14,13 @@ class SharedPrefManager(context: Context) {
         private const val PREF_NAME = "SIAGA_ID_PREF"
         private const val KEY_IS_LOGIN = "isLogin"
         private const val KEY_USERNAME = "username"
+        private const val KEY_TUTORIAL_SEEN = "tutorial_seen"
     }
+
+    // Status apakah tutorial onboarding sudah dilihat
+    var isTutorialSeen: Boolean
+        get() = pref.getBoolean(KEY_TUTORIAL_SEEN, false)
+        set(value) = pref.edit().putBoolean(KEY_TUTORIAL_SEEN, value).apply()
 
     // Status apakah pengguna sudah login
     var isLogin: Boolean

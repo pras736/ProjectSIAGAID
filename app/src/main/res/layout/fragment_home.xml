@@ -110,6 +110,82 @@
 
         </LinearLayout>
 
+        <!-- Header Melengkung Artistik Wave (Pertemuan 9 - bg_header_wafe) -->
+        <FrameLayout
+            android:id="@+id/containerWaveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="76dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="2dp">
+
+            <View
+                android:id="@+id/background_header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_header_wafe" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_shield"
+                    app:tint="@color/white" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="SIAGA ID RESPONSE READY"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sistem Siaga Bencana &amp; P3K Aktif"
+                        android:textColor="#E0E7FF"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnHeaderTutorial"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="#33FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#66FFFFFF"
+                    app:strokeWidth="1dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Tutorial Onboarding"
+                        android:src="@drawable/ic_info"
+                        app:tint="@color/white" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </FrameLayout>
+
         <!-- RED HERO BUTTON: "Tampilkan Kartu Medis >" (EMERGENCY RED) -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/btnEmergencyCard"
@@ -326,21 +402,24 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Grid 2 Kolom x 3 Baris Nomor Panggilan Darurat -->
-        <GridLayout
+        <!-- Grid 2 Kolom x 3 Baris Nomor Panggilan Darurat (Pertemuan 9: androidx.gridlayout.widget.GridLayout) -->
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/gridLayoutEmergency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:columnCount="2"
-            android:rowCount="3">
+            app:columnCount="2"
+            app:rowCount="3"
+            app:useDefaultMargins="true">
 
             <!-- 1. Darurat 112 -->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardCall112"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="@color/card_surface"
@@ -410,8 +489,9 @@
                 android:id="@+id/cardCallAmbulance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="@color/card_surface"
@@ -481,8 +561,9 @@
                 android:id="@+id/cardCallFire"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="@color/card_surface"
@@ -552,8 +633,9 @@
                 android:id="@+id/cardCallPolice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="@color/card_surface"
@@ -623,8 +705,9 @@
                 android:id="@+id/cardCallBpbd"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
                 android:layout_marginEnd="4dp"
                 android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="@color/card_surface"
@@ -694,8 +777,9 @@
                 android:id="@+id/cardCallBasarnas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal"
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="8dp"
                 app:cardBackgroundColor="@color/card_surface"
@@ -760,7 +844,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-        </GridLayout>
+        </androidx.gridlayout.widget.GridLayout>
 
         <!-- Tip / Info Card: "💡 Tahukah kamu? Cek dan perbarui isi tas siaga bencana setiap 6 bulan sekali." -->
         <com.google.android.material.card.MaterialCardView

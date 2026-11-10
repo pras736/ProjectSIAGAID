@@ -23,6 +23,11 @@
             </intent-filter>
         </activity>
 
+        <!-- TutorialActivity (Tutorial / Onboard Screen Pertemuan 9) -->
+        <activity
+            android:name=".tutorial.TutorialActivity"
+            android:exported="false" />
+
         <!-- LoginActivity -->
         <activity
             android:name=".LoginActivity"

@@ -11,6 +11,7 @@ import com.example.project_prasetio.LoginActivity
 import com.example.project_prasetio.R
 import com.example.project_prasetio.SharedPrefManager
 import com.example.project_prasetio.databinding.FragmentSettingsBottomSheetBinding
+import com.example.project_prasetio.tutorial.TutorialActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 /**
@@ -71,6 +72,15 @@ class SettingsBottomSheetDialogFragment : BottomSheetDialogFragment() {
         }
         binding.btnTextLarge.setOnClickListener {
             Toast.makeText(requireContext(), "Ukuran teks: Besar", Toast.LENGTH_SHORT).show()
+        }
+
+        // Buka TutorialActivity Onboarding (Pertemuan 9)
+        binding.btnOpenTutorial.setOnClickListener {
+            dismiss()
+            val intent = Intent(requireContext(), TutorialActivity::class.java).apply {
+                putExtra(TutorialActivity.EXTRA_FROM_SETTINGS, true)
+            }
+            startActivity(intent)
         }
 
         // Tombol Hapus Semua Data -> Tampilkan ALERT DIALOG saat logout

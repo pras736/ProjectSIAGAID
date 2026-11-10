@@ -14,6 +14,7 @@ import com.example.project_prasetio.MainActivity
 import com.example.project_prasetio.R
 import com.example.project_prasetio.SharedPrefManager
 import com.example.project_prasetio.databinding.FragmentHomeBinding
+import com.example.project_prasetio.tutorial.TutorialActivity
 
 /**
  * HomeFragment — Screen 3 Grand Design (Beranda SIAGA ID):
@@ -102,6 +103,14 @@ class HomeFragment : Fragment() {
 
         binding.btnCallBasarnas.setOnClickListener { makePhoneCall("115") }
         binding.cardCallBasarnas.setOnClickListener { makePhoneCall("115") }
+
+        // 7. Tombol Info di Header Wave -> Buka TutorialActivity (Pertemuan 9)
+        binding.btnHeaderTutorial.setOnClickListener {
+            val intent = Intent(requireContext(), TutorialActivity::class.java).apply {
+                putExtra(TutorialActivity.EXTRA_FROM_SETTINGS, true)
+            }
+            startActivity(intent)
+        }
     }
 
     private fun makePhoneCall(phoneNumber: String) {

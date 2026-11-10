@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.project_prasetio.MainActivity
 import com.example.project_prasetio.R
 import com.example.project_prasetio.adapter.PanduanAdapter
 import com.example.project_prasetio.databinding.FragmentPanduanBinding
 import com.example.project_prasetio.model.PanduanItem
+import com.google.android.material.chip.Chip
 
 /**
  * PanduanFragment — Screen 2 Grand Design (Panduan Tindakan):
@@ -68,32 +67,22 @@ class PanduanFragment : Fragment() {
             )
         }
     }
+    // Deteksi chip yang dipilih menggunakan ChipGroup listener (Pertemuan 9 Tahap 2.2)
 
     private fun setupFilterChips() {
-        val chips = listOf(
-            binding.chipSemua to "Semua",
-            binding.chipP3K to "P3K Medis",
-            binding.chipBencana to "Bencana Alam",
-            binding.chipEvakuasi to "Evakuasi"
-        )
-
-        chips.forEach { (view, filterName) ->
-            view.setOnClickListener {
-                activeFilter = filterName
-                updateChipStyles(chips, view)
-                filterList(filterName)
+        binding.chipGroupFilter.setOnCheckedStateChangeListener { group, checkedIds ->
+            val selectedChipId = checkedIds.firstOrNull() ?: R.id.chipSemua
+            val chip = group.findViewById<Chip>(selectedChipId)
+            val category = when (selectedChipId) {
+                R.id.chipP3K -> "P3K Medis"
+                R.id.chipBencana -> "Bencana Alam"
+                R.id.chipEvakuasi -> "Evakuasi"
+                else -> "Semua"
             }
-        }
-    }
-
-    private fun updateChipStyles(chips: List<Pair<TextView, String>>, selectedView: TextView) {
-        chips.forEach { (view, _) ->
-            if (view == selectedView) {
-                view.setBackgroundResource(R.drawable.bg_chip_selected)
-                view.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            } else {
-                view.setBackgroundResource(R.drawable.bg_chip_unselected)
-                view.setTextColor(ContextCompat.getColor(requireContext(), R.color.text_secondary))
+            activeFilter = category
+            filterList(category)
+            if (chip != null) {
+                Toast.makeText(requireContext(), "Filter: ${chip.text}", Toast.LENGTH_SHORT).show()
             }
         }
     }
