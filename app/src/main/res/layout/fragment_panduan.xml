@@ -66,95 +66,57 @@
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
-    <!-- Filter Chips Row (Horizontal Scrollable) menggunakan Material ChipGroup & Chip (Pertemuan 9) -->
-    <HorizontalScrollView
+    <!-- TabLayout Kategori Panduan Tindakan (Pertemuan 10) -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayoutPanduan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp"
-        android:overScrollMode="never"
-        android:paddingStart="14dp"
-        android:paddingEnd="14dp"
-        android:scrollbars="none">
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/app_bg"
+        app:tabIndicatorColor="@color/navy"
+        app:tabIndicatorHeight="3dp"
+        app:tabIndicatorFullWidth="false"
+        app:tabMode="scrollable"
+        app:tabGravity="start"
+        app:tabSelectedTextColor="@color/navy"
+        app:tabTextColor="@color/text_secondary"
+        app:tabRippleColor="@color/ripple_light"
+        app:tabTextAppearance="@style/TextAppearance.SiagaID.Tab">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroupFilter"
+        <!-- Tab 1: Semua (Selected) -->
+        <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:selectionRequired="true"
-            app:singleLine="true"
-            app:singleSelection="true">
+            android:text="Semua" />
 
-            <!-- Chip 1: Semua (Selected) -->
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipSemua"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:checked="true"
-                android:text="Semua"
-                android:textColor="@color/chip_text_selector"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_background_selector"
-                app:chipCornerRadius="16dp"
-                app:chipStrokeColor="@color/chip_stroke_selector"
-                app:chipStrokeWidth="1dp" />
+        <!-- Tab 2: P3K Medis -->
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="P3K Medis" />
 
-            <!-- Chip 2: P3K Medis -->
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipP3K"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:text="P3K Medis"
-                android:textColor="@color/chip_text_selector"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_background_selector"
-                app:chipCornerRadius="16dp"
-                app:chipStrokeColor="@color/chip_stroke_selector"
-                app:chipStrokeWidth="1dp" />
+        <!-- Tab 3: Bencana Alam -->
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bencana Alam" />
 
-            <!-- Chip 3: Bencana Alam -->
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipBencana"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:text="Bencana Alam"
-                android:textColor="@color/chip_text_selector"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_background_selector"
-                app:chipCornerRadius="16dp"
-                app:chipStrokeColor="@color/chip_stroke_selector"
-                app:chipStrokeWidth="1dp" />
+        <!-- Tab 4: Evakuasi -->
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Evakuasi" />
+    </com.google.android.material.tabs.TabLayout>
 
-            <!-- Chip 4: Evakuasi -->
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipEvakuasi"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Evakuasi"
-                android:textColor="@color/chip_text_selector"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_background_selector"
-                app:chipCornerRadius="16dp"
-                app:chipStrokeColor="@color/chip_stroke_selector"
-                app:chipStrokeWidth="1dp" />
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
-
-    <!-- ListView Panduan dengan Custom Adapter (item_panduan) -->
-    <ListView
-        android:id="@+id/listViewPanduan"
+    <!-- RecyclerView Panduan dengan Custom Adapter (item_panduan) (Pertemuan 10) -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPanduan"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/transparent"
-        android:dividerHeight="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
         android:paddingBottom="16dp"
-        android:clipToPadding="false" />
+        tools:listitem="@layout/item_panduan" />
 
 </LinearLayout>

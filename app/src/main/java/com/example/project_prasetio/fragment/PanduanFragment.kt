@@ -6,18 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.project_prasetio.MainActivity
-import com.example.project_prasetio.R
 import com.example.project_prasetio.adapter.PanduanAdapter
 import com.example.project_prasetio.databinding.FragmentPanduanBinding
 import com.example.project_prasetio.model.PanduanItem
-import com.google.android.material.chip.Chip
+import com.google.android.material.tabs.TabLayout
 
 /**
  * PanduanFragment — Screen 2 Grand Design (Panduan Tindakan):
  * - Header: "Panduan Tindakan" & "Akses luring 100% tanpa internet"
- * - Filter Chips: Semua, P3K Medis, Bencana Alam, Evakuasi
- * - LISTVIEW DENGAN CUSTOM ADAPTER (PanduanAdapter)
+ * - Filter Kategori menggunakan TabLayout (Semua, P3K Medis, Bencana Alam, Evakuasi) (Pertemuan 10)
+ * - RECYCLERVIEW DENGAN CUSTOM ADAPTER (PanduanAdapter) (Pertemuan 10)
  * - Saat item diklik, membuka DetailFragment (Screen 1)
  */
 class PanduanFragment : Fragment() {
@@ -42,20 +42,25 @@ class PanduanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         allPanduanList = getGrandDesignPanduanList()
-        adapter = PanduanAdapter(requireContext(), allPanduanList)
-        binding.listViewPanduan.adapter = adapter
 
-        // Klik Search button
+        // 1. Inisialisasi RecyclerView & PanduanAdapter (Pertemuan 10)
+        setupRecyclerView()
+
+        // 2. Klik Search button
         binding.btnSearchPanduan.setOnClickListener {
             Toast.makeText(requireContext(), "Pencarian panduan darurat aktif offline", Toast.LENGTH_SHORT).show()
         }
 
-        // Setup filter chips
-        setupFilterChips()
+        // 3. Setup TabLayout untuk Filter Kategori (Pertemuan 10)
+        setupTabLayout()
+    }
 
-        // Klik Item ListView -> Buka DetailFragment (Screen 1)
-        binding.listViewPanduan.setOnItemClickListener { _, _, position, _ ->
-            val item = (adapter.getItem(position) as PanduanItem)
+    /**
+     * Konfigurasi RecyclerView dengan LinearLayoutManager dan Item Click Listener
+     */
+    private fun setupRecyclerView() {
+        adapter = PanduanAdapter(allPanduanList) { item ->
+            // Klik Item RecyclerView -> Buka DetailFragment (Screen 1)
             (activity as? MainActivity)?.navigateTo(
                 DetailFragment.newInstance(
                     title = item.judul,
@@ -66,25 +71,36 @@ class PanduanFragment : Fragment() {
                 addToBackStack = true
             )
         }
-    }
-    // Deteksi chip yang dipilih menggunakan ChipGroup listener (Pertemuan 9 Tahap 2.2)
 
-    private fun setupFilterChips() {
-        binding.chipGroupFilter.setOnCheckedStateChangeListener { group, checkedIds ->
-            val selectedChipId = checkedIds.firstOrNull() ?: R.id.chipSemua
-            val chip = group.findViewById<Chip>(selectedChipId)
-            val category = when (selectedChipId) {
-                R.id.chipP3K -> "P3K Medis"
-                R.id.chipBencana -> "Bencana Alam"
-                R.id.chipEvakuasi -> "Evakuasi"
-                else -> "Semua"
-            }
-            activeFilter = category
-            filterList(category)
-            if (chip != null) {
-                Toast.makeText(requireContext(), "Filter: ${chip.text}", Toast.LENGTH_SHORT).show()
-            }
+        binding.recyclerViewPanduan.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@PanduanFragment.adapter
+            setHasFixedSize(true)
         }
+    }
+
+    /**
+     * Setup TabLayout listener untuk filter kategori (Pertemuan 10)
+     */
+    private fun setupTabLayout() {
+        binding.tabLayoutPanduan.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val category = when (tab?.position) {
+                    1 -> "P3K Medis"
+                    2 -> "Bencana Alam"
+                    3 -> "Evakuasi"
+                    else -> "Semua"
+                }
+                activeFilter = category
+                filterList(category)
+                if (tab != null) {
+                    Toast.makeText(requireContext(), "Filter: ${tab.text}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
+        })
     }
 
     private fun filterList(category: String) {

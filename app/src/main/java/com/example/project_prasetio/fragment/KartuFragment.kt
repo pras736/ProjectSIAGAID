@@ -69,7 +69,6 @@ class KartuFragment : Fragment() {
                 *KARTU IDENTITAS MEDIS DARURAT (SIAGA ID)*
                 Nama: ${binding.tvCardPatientName.text}
                 Golongan Darah: O+ (Rh+)
-                Donor Organ: Terdaftar
                 Usia & JK: 28 Th • Pria
                 Alergi Fatal: Penisilin, Kacang Tanah
                 Kondisi Kronis: Asma Bronkial (Bawa Inhaler Ventolin)
